@@ -47,7 +47,7 @@ class SectionHeaders : public QTreeWidget
         enum Subitems { NAME, TYPE, ADDR, OFFSET, SIZE, ENTSIZE, FLAGS, LINK,
             INFO, ADDRALIGN };
         const int COLUMN_SIZE = 2;
-        const int COLUMN_WIDTH = 250;
+        const int COLUMN_WIDTH = 275;
 
         Dialog dialog;
         LibElf::LibElf *libElf;

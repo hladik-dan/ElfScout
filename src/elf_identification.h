@@ -39,7 +39,7 @@ class ElfIdentification : public QTreeWidget
         enum Items { MAG0, MAG1, MAG2, MAG3, CLASS, DATA, VERSION, OSABI,
             ABIVERSION };
         const int COLUMN_SIZE = 2;
-        const int COLUMN_WIDTH = 250;
+        const int COLUMN_WIDTH = 275;
 
         Dialog dialog;
         ElfScout *elfScout;

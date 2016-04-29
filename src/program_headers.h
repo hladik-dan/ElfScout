@@ -45,7 +45,7 @@ class ProgramHeaders : public QTreeWidget
         enum Subitems { TYPE, OFFSET, VADDR, PADDR, FILESZ, MEMSZ, FLAGS,
             ALIGN };
         const int COLUMN_SIZE = 2;
-        const int COLUMN_WIDTH = 250;
+        const int COLUMN_WIDTH = 275;
 
         Dialog dialog;
         LibElf::LibElf *libElf;

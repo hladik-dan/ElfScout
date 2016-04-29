@@ -43,7 +43,7 @@ class ElfHeader : public QTreeWidget
         enum Items { TYPE, MACHINE, VERSION, ENTRY, PHOFF, SHOFF, FLAGS, EHSIZE,
             PHENTSIZE, PHNUM, SHENTSIZE, SHNUM, SHSTRNDX };
         const int COLUMN_SIZE = 2;
-        const int COLUMN_WIDTH = 250;
+        const int COLUMN_WIDTH = 275;
 
         Dialog dialog;
         LibElf::LibElf *libElf;

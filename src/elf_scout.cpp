@@ -42,6 +42,16 @@ void ElfScout::setMenu()
     menuFile->addAction(actionSaveReload);
     menuFile->addSeparator();
     menuFile->addAction(actionExit);
+
+
+    // Show -> String Tables
+    actionStringTable = new QAction("String Tables", this);
+    connect(actionStringTable, &QAction::triggered, this,
+        &ElfScout::showStringTableWindow);
+
+    // Show
+    menuShow = menuBar()->addMenu("Show");
+    menuShow->addAction(actionStringTable);
 }
 
 void ElfScout::setUi()
@@ -58,7 +68,7 @@ void ElfScout::setUi()
     mainLayout = new QGridLayout();
     centralWidget->setLayout(mainLayout);
 
-    // Add widget
+    // Add tab widget
     tabWidget = new QTabWidget();
     mainLayout->addWidget(tabWidget);
 
@@ -139,5 +149,11 @@ void ElfScout::saveReloadFile()
 {
     this->saveFile();
     this->reopenFile();
+}
+
+void ElfScout::showStringTableWindow()
+{
+    string_tables = new StringTables(&libElf);
+    string_tables->show();
 }
 

@@ -20,7 +20,8 @@ HEADERS += \
     src/elf_identification.h \
     src/elf_scout.h \
     src/program_headers.h \
-    src/section_headers.h
+    src/section_headers.h \
+    src/string_tables.h
 
 SOURCES += \
     src/elf_header.cpp \
@@ -28,4 +29,5 @@ SOURCES += \
     src/elf_scout.cpp \
     src/main.cpp \
     src/program_headers.cpp \
-    src/section_headers.cpp
+    src/section_headers.cpp \
+    src/string_tables.cpp

@@ -9,6 +9,8 @@ class StringTables : public QWidget
         StringTables(LibElf::LibElf *libElf);
         ~StringTables();
 
+        void show();
+
     private:
         void setUI();
         void addTab(Elf_Half shndx);

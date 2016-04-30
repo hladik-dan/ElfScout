@@ -38,24 +38,16 @@ class ElfScout : public QMainWindow
         LibElf::LibElf libElf;
 
         // Tabs
-        ElfIdentification *tab1;
-        ElfHeader *tab2;
-        SectionHeaders *tab3;
-        ProgramHeaders *tab4;
+        ElfIdentification *tabElfIdentification;
+        ElfHeader *tabElfHeader;
+        SectionHeaders *tabSectionHeaders;
+        ProgramHeaders *tabProgramHeaders;
 
         // Sections
         StringTables *string_tables;
 
         // Widgets
-        QAction *actionOpen;
-        QAction *actionReload;
-        QAction *actionSave;
-        QAction *actionSaveReload;
-        QAction *actionExit;
-        QAction *actionStringTable;
         QGridLayout *mainLayout;
-        QMenu *menuFile;
-        QMenu *menuShow;
         QTabWidget *tabWidget;
         QWidget *centralWidget;
 };

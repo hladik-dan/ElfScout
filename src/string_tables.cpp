@@ -11,19 +11,10 @@ StringTables::~StringTables()
 {
 }
 
-void StringTables::setUI()
+void StringTables::show()
 {
-    // Set up window
-    this->resize(WIDTH, HEIGHT);
-    this->setWindowTitle(TITLE);
-
-    // Set main layout
-    mainLayout = new QVBoxLayout();
-    this->setLayout(mainLayout);
-
-    // Add tab widget
-    tabWidget = new QTabWidget();
-    mainLayout->addWidget(tabWidget);
+    // Clear tabs if there are any
+    tabWidget->clear();
 
     // Find string tables and add them as tabs
     for (Elf_Half i = 0; i < libElf->get_elf_header()->get_shnum(); ++i) {
@@ -37,6 +28,24 @@ void StringTables::setUI()
         // Set up tab and add it to tab widget
         this->addTab(i);
     }
+
+    // Show window
+    QWidget::show();
+}
+
+void StringTables::setUI()
+{
+    // Set up window
+    this->resize(WIDTH, HEIGHT);
+    this->setWindowTitle(TITLE);
+
+    // Set main layout
+    mainLayout = new QVBoxLayout();
+    this->setLayout(mainLayout);
+
+    // Add tab widget
+    tabWidget = new QTabWidget();
+    mainLayout->addWidget(tabWidget);
 }
 
 void StringTables::addTab(Elf_Half shndx)

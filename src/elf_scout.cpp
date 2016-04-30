@@ -13,28 +13,28 @@ ElfScout::~ElfScout()
 void ElfScout::setMenu()
 {
     // File -> Open
-    actionOpen = new QAction("Open", this);
+    QAction *actionOpen = new QAction("Open", this);
     connect(actionOpen, &QAction::triggered, this, &ElfScout::openFile);
     
     // File -> Reload
-    actionReload = new QAction("Reload", this);
+    QAction *actionReload = new QAction("Reload", this);
     connect(actionReload, &QAction::triggered, this, &ElfScout::reopenFile);
 
     // File -> Save
-    actionSave = new QAction("Save", this);
+    QAction *actionSave = new QAction("Save", this);
     connect(actionSave, &QAction::triggered, this, &ElfScout::saveFile);
 
     // File -> Save and Reload
-    actionSaveReload = new QAction("Save and Reload", this);
+    QAction *actionSaveReload = new QAction("Save and Reload", this);
     connect(actionSaveReload, &QAction::triggered, this,
         &ElfScout::saveReloadFile);
 
     // File -> Exit
-    actionExit = new QAction("Exit", this);
+    QAction *actionExit = new QAction("Exit", this);
     connect(actionExit, &QAction::triggered, this, &ElfScout::close);
 
     // File
-    menuFile = menuBar()->addMenu("File");
+    QMenu *menuFile = menuBar()->addMenu("File");
     menuFile->addAction(actionOpen);
     menuFile->addAction(actionReload);
     menuFile->addAction(actionSave);
@@ -45,12 +45,12 @@ void ElfScout::setMenu()
 
 
     // Show -> String Tables
-    actionStringTable = new QAction("String Tables", this);
+    QAction *actionStringTable = new QAction("String Tables", this);
     connect(actionStringTable, &QAction::triggered, this,
         &ElfScout::showStringTableWindow);
 
     // Show
-    menuShow = menuBar()->addMenu("Show");
+    QMenu *menuShow = menuBar()->addMenu("Show");
     menuShow->addAction(actionStringTable);
 }
 
@@ -73,10 +73,10 @@ void ElfScout::setUi()
     mainLayout->addWidget(tabWidget);
 
     // Alloc memoery for tabs
-    tab1 = new ElfIdentification(this, &libElf);
-    tab2 = new ElfHeader(&libElf);
-    tab3 = new SectionHeaders(&libElf);
-    tab4 = new ProgramHeaders(&libElf);
+    tabElfIdentification = new ElfIdentification(this, &libElf);
+    tabElfHeader = new ElfHeader(&libElf);
+    tabSectionHeaders = new SectionHeaders(&libElf);
+    tabProgramHeaders = new ProgramHeaders(&libElf);
 }
 
 void ElfScout::showTabs()
@@ -86,26 +86,26 @@ void ElfScout::showTabs()
 
     // Load and display data if they are ok
     if (libElf.get_elf_identification()->is_ok()) {
-        tab1->load();
-        tabWidget->addTab(tab1, "ELF Identification");
+        tabElfIdentification->load();
+        tabWidget->addTab(tabElfIdentification, "ELF Identification");
     }
 
     // Load and display data if they are ok
     if (libElf.get_elf_header()->is_ok()) {
-        tab2->load();
-        tabWidget->addTab(tab2, "ELF Header");
+        tabElfHeader->load();
+        tabWidget->addTab(tabElfHeader, "ELF Header");
     }
 
     // Load and display data if they are ok
     if (libElf.get_sections()->is_ok()) {
-        tab3->load();
-        tabWidget->addTab(tab3, "Section Headers");
+        tabSectionHeaders->load();
+        tabWidget->addTab(tabSectionHeaders, "Section Headers");
     }
 
     // Load and display data if they are ok
     if (libElf.get_segments()->is_ok()) {
-        tab4->load();
-        tabWidget->addTab(tab4, "Program Headers");
+        tabProgramHeaders->load();
+        tabWidget->addTab(tabProgramHeaders, "Program Headers");
     }
 }
 

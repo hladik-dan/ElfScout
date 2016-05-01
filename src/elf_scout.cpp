@@ -12,46 +12,60 @@ ElfScout::~ElfScout()
 
 void ElfScout::setMenu()
 {
+    // Menu -> File
+    this->setMenuFile();
+
+    // Menu -> Show
+    this->setMenuShow();
+}
+
+void ElfScout::setMenuFile()
+{
+    // File
+    menu = menuBar()->addMenu("File");
+
     // File -> Open
-    QAction *actionOpen = new QAction("Open", this);
-    connect(actionOpen, &QAction::triggered, this, &ElfScout::openFile);
-    
+    action = new QAction("Open", this);
+    connect(action, &QAction::triggered, this, &ElfScout::openFile);
+    menu->addAction(action);
+
     // File -> Reload
-    QAction *actionReload = new QAction("Reload", this);
-    connect(actionReload, &QAction::triggered, this, &ElfScout::reopenFile);
+    action = new QAction("Reload", this);
+    connect(action, &QAction::triggered, this, &ElfScout::reopenFile);
+    menu->addAction(action);
 
     // File -> Save
-    QAction *actionSave = new QAction("Save", this);
-    connect(actionSave, &QAction::triggered, this, &ElfScout::saveFile);
+    action = new QAction("Save", this);
+    connect(action, &QAction::triggered, this, &ElfScout::saveFile);
+    menu->addAction(action);
+
+    // File -> Separator
+    menu->addSeparator();
 
     // File -> Save and Reload
-    QAction *actionSaveReload = new QAction("Save and Reload", this);
-    connect(actionSaveReload, &QAction::triggered, this,
-        &ElfScout::saveReloadFile);
+    action = new QAction("Save and Reload", this);
+    connect(action, &QAction::triggered, this, &ElfScout::saveReloadFile);
+    menu->addAction(action);
+
+    // File -> Separator
+    menu->addSeparator();
 
     // File -> Exit
-    QAction *actionExit = new QAction("Exit", this);
-    connect(actionExit, &QAction::triggered, this, &ElfScout::close);
+    action = new QAction("Exit", this);
+    connect(action, &QAction::triggered, this, &ElfScout::close);
+    menu->addAction(action);
+}
 
-    // File
-    QMenu *menuFile = menuBar()->addMenu("File");
-    menuFile->addAction(actionOpen);
-    menuFile->addAction(actionReload);
-    menuFile->addAction(actionSave);
-    menuFile->addSeparator();
-    menuFile->addAction(actionSaveReload);
-    menuFile->addSeparator();
-    menuFile->addAction(actionExit);
-
+void ElfScout::setMenuShow()
+{
+    // Show
+    menu = menuBar()->addMenu("Show");
 
     // Show -> String Tables
-    QAction *actionStringTable = new QAction("String Tables", this);
-    connect(actionStringTable, &QAction::triggered, this,
+    action = new QAction("String Tables", this);
+    connect(action, &QAction::triggered, this,
         &ElfScout::showStringTableWindow);
-
-    // Show
-    QMenu *menuShow = menuBar()->addMenu("Show");
-    menuShow->addAction(actionStringTable);
+    menu->addAction(action);
 }
 
 void ElfScout::setUi()

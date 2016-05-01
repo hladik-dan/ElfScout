@@ -18,6 +18,8 @@ class ElfScout : public QMainWindow
 
     private:
         void setMenu();
+        void setMenuFile();
+        void setMenuShow();
         void setUi();
         void showTabs();
 
@@ -47,7 +49,9 @@ class ElfScout : public QMainWindow
         StringTables *string_tables;
 
         // Widgets
+        QAction *action;
         QGridLayout *mainLayout;
+        QMenu *menu;
         QTabWidget *tabWidget;
         QWidget *centralWidget;
 };
